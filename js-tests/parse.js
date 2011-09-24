@@ -37,7 +37,7 @@
 // - depth is the depth of the current element
 //   (it should be 1 for the initial element)
 ////////////////////////////////////////////
-function traverseDOMTree(targetDocument, currentElement, depth)
+function traverse_dom_tree(targetDocument, currentElement, depth)
 {
   if (currentElement)
   {
@@ -61,7 +61,7 @@ function traverseDOMTree(targetDocument, currentElement, depth)
     while (currentElementChild)
     {
       // Formatting code (indent the tree so it looks nice on the screen)
-      targetDocument.write("<BR>\n");
+      targetDocument.writeln("<BR>");
       for (j=0; j<depth; j++)
       {
         // &#166 is just a vertical line
@@ -76,7 +76,7 @@ function traverseDOMTree(targetDocument, currentElement, depth)
         targetDocument.write("--");
 
       // Recursively traverse the tree structure of the child node
-      traverseDOMTree(targetDocument, currentElementChild, depth+1);
+      traverse_dom_tree(targetDocument, currentElementChild, depth+1);
       i++;
       currentElementChild=currentElement.childNodes[i];
     }
@@ -108,7 +108,7 @@ function printDOMTree(domElement, destinationWindow)
   outputWindow.document.open("text/html", "replace");
   outputWindow.document.write("<HTML><HEAD><TITLE>DOM</TITLE></HEAD><BODY>\n");
   outputWindow.document.write("<CODE>\n");
-  traverseDOMTree(outputWindow.document, domElement, 1);
+  traverse_dom_tree(outputWindow.document, domElement, 1);
   outputWindow.document.write("</CODE>\n");
   outputWindow.document.write("</BODY></HTML>\n");
 
