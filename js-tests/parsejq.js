@@ -6,7 +6,7 @@ $(document).ready(function(){
     
     $('p').each(function(para_index){
         date_matches['para_'+para_index] = (date_parser.get_matched($(this).text()));
-    });l4,
+    });
     console.debug(date_matches);
     
 });
