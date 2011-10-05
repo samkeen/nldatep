@@ -25,9 +25,15 @@ function NLDP() {
     {
         matches = [];
         match = null;
-        while(match = this.date_pattern.exec(doc_element))
+        while(match = this.date_pattern.exec(doc_element.textContent))
         {
-            matches.push(new NldpMatch(match[0], (this.date_pattern.lastIndex - 1)));
+            matches.push(
+                new NldpMatch(
+                    match[0],
+                    (this.date_pattern.lastIndex - 1),
+                    NldpUtil.get_xpath(doc_element.parentNode)
+                )
+            );
         }
         return matches;
     }
@@ -54,17 +60,22 @@ var NldpUtil = {
 }
 
 var NLDP_LOGGING = true;
+var document_body = document.getElementsByTagName("body");
+document_body = document_body.item(0);
 
-$(document).contents ().each (function processNodes ()
+var date_parser = new NLDP();
+
+$(document_body).contents ().each (function processNodes ()
 {
     if (this.nodeType == 3)
     {
+        NldpUtil.log("matches:");
+        NldpUtil.log(date_parser.get_matched(this));
         NldpUtil.log(this);
     }
     else
     {
         NldpUtil.log("<"+this.nodeName+">");
-        NldpUtil.log("xpath:"+NldpUtil.get_xpath(this));
         $(this).contents ().each (processNodes);
         NldpUtil.log("</"+this.nodeName+">");
     }
