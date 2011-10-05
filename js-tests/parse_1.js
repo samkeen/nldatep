@@ -64,7 +64,7 @@ function draw_next_tree_section(current_depth, tag_name)
  *  ¦  ¦  ¦
  *  ¦  ¦  ¦--Text: Martin Van Buren
  *  ¦  ¦  ¦  
- *  ¦  ¦   </A>  <---- drwing this line
+ *  ¦  ¦   </A>  <---- drawing this line
  *   
  */
 function draw_closing_tag_tree_section(current_depth, tag_name)
